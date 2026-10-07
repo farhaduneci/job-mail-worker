@@ -1,0 +1,14 @@
+{
+  "$comment": "The categories every email is sorted into. Keys are fixed (the worker routes on them); descriptions are what the classifier judges against, so edit them freely.",
+  "instructions": "This email arrived at the job-application address of someone who applies to many roles. Which category is it? When it mixes signals (\"thanks for applying, please complete this assessment\"), pick the one needing the most attention: offer, then interview, then assessment, then action, then verification.",
+  "criteria": {
+    "offer": "A job offer, verbal or written, or an offer letter or contract to review.",
+    "interview": "A step forward: an interview or call invite, a request to book a time, a recruiter or hiring manager wanting to talk, \"we'd like to move forward with you\".",
+    "assessment": "A take-home task, coding challenge, online test or questionnaire to complete as the next step.",
+    "action": "Not a step forward, but a human must do something: answer a question, send a document, fix or complete the application, reply to a recruiter.",
+    "verification": "A security code, one-time password, or a link to verify an email address or finish submitting an application.",
+    "confirmation": "An automated \"we received your application\" or \"thank you for applying\" with nothing to do.",
+    "rejection": "The application is declined, the role is filled or closed, \"we decided to move forward with other candidates\", \"not a fit at this time\".",
+    "noise": "Job alerts, newsletters, talent-community or marketing mail, surveys, anything not about a specific application."
+  }
+}

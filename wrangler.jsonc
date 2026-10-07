@@ -1,0 +1,37 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "job-mail-worker",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  // Email Workers need no public URL.
+  "workers_dev": false,
+  "observability": { "enabled": true },
+
+  "ai": { "binding": "AI", "remote": true },
+  // No database_id: `wrangler deploy` and the Deploy button create the database on first deploy.
+  "d1_databases": [{ "binding": "DB", "database_name": "job-mail", "migrations_dir": "migrations" }],
+
+  "vars": {
+    // Where everything lands unless sorted elsewhere. Must be a verified Email Routing destination.
+    "FORWARD_TO": "you@example.com",
+    // Optional extra destinations, each verified too. Empty means FORWARD_TO.
+    // Gmail plus-addresses (you+jobs-attention@gmail.com) make each one filterable.
+    "FORWARD_ATTENTION": "",
+    "FORWARD_ARCHIVE": "",
+    "FORWARD_REJECTED": "",
+    // Archive a rejection / confirmation / noise only at this classifier probability or more...
+    "ARCHIVE_MIN": "0.8",
+    // ...and when offer + interview + assessment + action together get at most this much.
+    "ATTENTION_MAX": "0.1",
+    // Classifier when no TypeSafe key is set, and the model that writes the Telegram summary.
+    "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "JEV_URL": "https://api.typesafe.ai/v1/systemone",
+    "JEV_MODEL": "jev-latest"
+  },
+  // Optional secrets (wrangler secret put): TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TYPESAFE_API_KEY.
+
+  // Weekly Telegram digest, Monday 08:00 UTC.
+  "triggers": { "crons": ["0 8 * * MON"] },
+
+  "rules": [{ "type": "Text", "globs": ["**/*.txt"], "fallthrough": true }]
+}

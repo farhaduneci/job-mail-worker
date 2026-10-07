@@ -1,0 +1,8 @@
+An employer sent this email to a job seeker about a job application. It was already judged to be: {category}.
+
+Extract the company name and the role title if the email states them (empty string if not), and write a summary: one short plain sentence saying what the email asks or tells, for a phone notification.
+
+From: {from}
+Subject: {subject}
+
+{body}

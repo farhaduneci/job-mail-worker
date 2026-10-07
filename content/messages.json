@@ -1,0 +1,27 @@
+{
+  "$comment": "Telegram messages. One variant is picked at random. Per-email ones fill {company}, {role}, {summary}, {subject}; the weekly digest fills {total}, {companies}, {confirmations}, {rejections}, {interviews}, {assessments}, {offers}, {actions}, {good}.",
+  "offer": [
+    "🥳 {company} made you an offer for {role}!\n\n{summary}\n\nThe email is \"{subject}\" in your inbox.\n\n#offer",
+    "🥳 Offer from {company} ({role})!\n\n{summary}\n\nLook for \"{subject}\".\n\n#offer"
+  ],
+  "interview": [
+    "🎉 Good news from {company}, {role}.\n\n{summary}\n\nIt's in your inbox: \"{subject}\".\n\n#interview",
+    "🎉 {company} wrote back about {role} and it looks like a step forward.\n\n{summary}\n\nCheck your inbox for \"{subject}\".\n\n#interview",
+    "🎉 Something positive just landed from {company} ({role}).\n\n{summary}\n\nThe email is \"{subject}\".\n\n#interview"
+  ],
+  "assessment": [
+    "🧩 {company} sent you an assessment for {role}.\n\n{summary}\n\nThe email is \"{subject}\" in your inbox.\n\n#interview",
+    "🧩 Next step at {company} ({role}) is a take-home or test.\n\n{summary}\n\nLook for \"{subject}\".\n\n#interview"
+  ],
+  "action": [
+    "📬 {company} needs something from you about {role}.\n\n{summary}\n\nThe email is \"{subject}\" in your inbox.\n\n#todo",
+    "📬 Heads up, {company} ({role}) is waiting on a reply.\n\n{summary}\n\nLook for \"{subject}\".\n\n#todo"
+  ],
+  "weekly": [
+    "📊 Your week in job mail: {total} emails from {companies} companies.\n\nConfirmations {confirmations}, rejections {rejections}, interviews {interviews}, assessments {assessments}, offers {offers}, waiting on you {actions}.\n\nThe good ones: {good}.",
+    "📊 Weekly recap. {companies} companies wrote to you, {total} emails in all.\n\nInterviews {interviews}, assessments {assessments}, offers {offers}. Rejections {rejections}, confirmations {confirmations}, {actions} waiting on a reply.\n\nWorth a look: {good}."
+  ],
+  "weekly_quiet": [
+    "📊 Quiet week, no employer mail came in at all. If a sweep ran, that's worth a look."
+  ]
+}

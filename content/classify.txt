@@ -1,0 +1,8 @@
+{instructions} Pick exactly one category key; pick "unsure" if none fits with confidence, since a wrong rejection hides an interview.
+
+{criteria}
+
+From: {from}
+Subject: {subject}
+
+{body}

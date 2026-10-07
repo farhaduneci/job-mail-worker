@@ -1,0 +1,65 @@
+{
+  "name": "job-mail-worker",
+  "version": "1.0.0",
+  "description": "Cloudflare Email Worker that sorts job-application mail: rejections and auto-replies out of the inbox, interviews flagged and pinged on Telegram",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler d1 migrations apply DB --remote && wrangler deploy",
+    "dev": "wrangler dev",
+    "tail": "wrangler tail",
+    "types": "wrangler types --strict-vars=false",
+    "typecheck": "npm run types && tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "postal-mime": "^4.0.4"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.3.6",
+    "@types/node": "^26.6.4",
+    "typescript": "^5.9.3",
+    "vitest": "~4.1",
+    "wrangler": "^4.147.0"
+  },
+  "cloudflare": {
+    "bindings": {
+      "FORWARD_TO": {
+        "description": "Your mailbox. Everything lands here unless sorted elsewhere. Add it as a verified destination under Email Routing first."
+      },
+      "FORWARD_ATTENTION": {
+        "description": "Optional. Offers, interviews, assessments and anything needing a reply go here, e.g. you+jobs-attention@gmail.com. Empty means FORWARD_TO."
+      },
+      "FORWARD_ARCHIVE": {
+        "description": "Optional. Confident auto-confirmations and job-board noise go here, e.g. you+jobs-ack@gmail.com. Empty means FORWARD_TO."
+      },
+      "FORWARD_REJECTED": {
+        "description": "Optional. Confident rejections go here, e.g. you+jobs-rejected@gmail.com. Empty means FORWARD_TO."
+      },
+      "ARCHIVE_MIN": {
+        "description": "Classifier probability needed before mail leaves the inbox (0-1)."
+      },
+      "ATTENTION_MAX": {
+        "description": "Most probability the attention categories may share for mail to leave the inbox (0-1)."
+      },
+      "AI_MODEL": {
+        "description": "Workers AI model for classification (without TypeSafe) and Telegram summaries."
+      },
+      "TELEGRAM_BOT_TOKEN": {
+        "description": "Optional. Bot token from @BotFather for pings and the weekly digest."
+      },
+      "TELEGRAM_CHAT_ID": {
+        "description": "Optional. Telegram chat id that receives the pings."
+      },
+      "TYPESAFE_API_KEY": {
+        "description": "Optional. TypeSafe key for the Jev classifier; Workers AI is used without it."
+      }
+    }
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "workerd@1.20261001.1": true,
+    "fsevents@2.3.3": true
+  }
+}
